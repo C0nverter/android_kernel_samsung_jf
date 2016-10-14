@@ -484,24 +484,24 @@ static void fmbim_ctrl_response_available(struct f_mbim *dev)
 
 	int notif_c = 0;
 
-	pr_info("dev:%p portno#%d\n", dev, dev->port_num);
+	pr_info("dev:%pK portno#%d\n", dev, dev->port_num);
 
 	spin_lock_irqsave(&dev->lock, flags);
 
 	if (!atomic_read(&dev->online)) {
-		pr_info("dev:%p is not online\n", dev);
+		pr_info("dev:%pK is not online\n", dev);
 		spin_unlock_irqrestore(&dev->lock, flags);
 		return;
 	}
 
 	if (!req) {
-		pr_info("dev:%p req is NULL\n", dev);
+		pr_info("dev:%pK req is NULL\n", dev);
 		spin_unlock_irqrestore(&dev->lock, flags);
 		return;
 	}
 
 	if (!req->buf) {
-		pr_info("dev:%p req->buf is NULL\n", dev);
+		pr_info("dev:%pK req->buf is NULL\n", dev);
 		spin_unlock_irqrestore(&dev->lock, flags);
 		return;
 	}
@@ -537,15 +537,15 @@ fmbim_send_cpkt_response(struct f_mbim *gr, struct ctrl_pkt *cpkt)
 	unsigned long	flags;
 
 	if (!gr || !cpkt) {
-		pr_err("Invalid cpkt, dev:%p cpkt:%p\n",
+		pr_err("Invalid cpkt, dev:%pK cpkt:%pK\n",
 				gr, cpkt);
 		return -ENODEV;
 	}
 
-	pr_info("dev:%p port_num#%d\n", dev, dev->port_num);
+	pr_info("dev:%pK port_num#%d\n", dev, dev->port_num);
 
 	if (!atomic_read(&dev->online)) {
-		pr_info("dev:%p is not connected\n", dev);
+		pr_info("dev:%pK is not connected\n", dev);
 		mbim_free_ctrl_pkt(cpkt);
 		return 0;
 	}
@@ -581,7 +581,7 @@ static int mbim_bam_connect(struct f_mbim *dev)
 {
 	int ret;
 
-	pr_info("dev:%p portno:%d\n", dev, dev->port_num);
+	pr_info("dev:%pK portno:%d\n", dev, dev->port_num);
 
 	ret = bam_data_connect(&dev->bam_port, dev->port_num, dev->port_num);
 	if (ret) {
@@ -597,7 +597,7 @@ static int mbim_bam_connect(struct f_mbim *dev)
 
 static int mbim_bam_disconnect(struct f_mbim *dev)
 {
-	pr_info("dev:%p port:%d. Do nothing.\n",
+	pr_info("dev:%pK port:%d. Do nothing.\n",
 			dev, dev->port_num);
 
 	/* bam_data_disconnect(&dev->bam_port, dev->port_num); */
@@ -625,7 +625,7 @@ static void mbim_reset_function_queue(struct f_mbim *dev)
 
 	spin_lock(&dev->lock);
 	if (!dev->is_open) {
-		pr_err("%s: mbim file handler %p is not open", __func__, dev);
+		pr_err("%s: mbim file handler %pK is not open", __func__, dev);
 		spin_unlock(&dev->lock);
 		return;
 	}
@@ -752,7 +752,7 @@ static void mbim_notify(struct f_mbim *mbim)
 	 * notification is sent, then it will reset to send the SPEED
 	 * notificaion again (and again, and again), but it's not a problem
 	 */
-	pr_info("dev:%p\n", mbim);
+	pr_info("dev:%pK\n", mbim);
 
 	mbim->not_port.notify_state = NCM_NOTIFY_SPEED;
 	mbim_do_notify(mbim);
@@ -883,7 +883,7 @@ fmbim_cmd_complete(struct usb_ep *ep, struct usb_request *req)
 
 	spin_lock(&dev->lock);
 	if (!dev->is_open) {
-		pr_err("mbim file handler %p is not open", dev);
+		pr_err("mbim file handler %pK is not open", dev);
 		spin_unlock(&dev->lock);
 		return;
 	}
