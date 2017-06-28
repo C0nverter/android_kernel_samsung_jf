@@ -1461,8 +1461,8 @@ int wlan_hdd_tdls_get_all_peers(hdd_adapter_t *pAdapter, char *buf, int buflen)
     mutex_lock(&pHddCtx->tdls_lock);
     pHddTdlsCtx = WLAN_HDD_GET_TDLS_CTX_PTR(pAdapter);
     if (NULL == pHddTdlsCtx) {
-        mutex_unlock(&pHddCtx->tdls_lock);
-        len = snprintf(buf, buflen, "TDLS not enabled\n");
+        mutex_unlock(&tdls_lock);
+        len = scnprintf(buf, buflen, "TDLS not enabled\n");
         return len;
     }
     for (i = 0; i < 256; i++) {

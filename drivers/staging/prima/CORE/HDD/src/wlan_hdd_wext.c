@@ -4633,21 +4633,22 @@ static int iw_get_char_setnone(struct net_device *dev, struct iw_request_info *i
 
             /**
              * Maximum channels = WNI_CFG_VALID_CHANNEL_LIST_LEN. Maximum buffer
-             * needed = 5 * number of channels. Check ifsufficient
-             * buffer is available and then proceed to fill the buffer.
+             * needed = 5 * number of channels. Check if sufficient buffer is available and
+             * then proceed to fill the buffer.
              */
             if(WE_MAX_STR_LEN < (5 * WNI_CFG_VALID_CHANNEL_LIST_LEN))
             {
                 hddLog(VOS_TRACE_LEVEL_ERROR,
-                        "%s Insufficient Buffer to populate channel list\n",
-                            __func__);
+                     "%s Insufficient Buffer to populate channel list\n",
+                      __func__);
                 return -EINVAL;
             }
             len = scnprintf(buf, WE_MAX_STR_LEN, "%u ",
-                    channel_list.num_channels);
+                     channel_list.num_channels);
+            buf += len;
             for(i = 0 ; i < channel_list.num_channels; i++)
             {
-                len += scnprintf(buf + len, WE_MAX_STR_LEN - len,
+                len = scnprintf(buf, WE_MAX_STR_LEN,
                                "%u ", channel_list.channels[i]);
             }
             wrqu->data.length = strlen(extra)+1;
