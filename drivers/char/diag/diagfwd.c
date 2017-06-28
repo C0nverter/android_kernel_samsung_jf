@@ -1238,9 +1238,8 @@ void diag_process_hdlc(void *data, unsigned len)
 	 * encoding
 	 */
 	if (hdlc.dest_idx < 4) {
-		pr_err_ratelimited("diag: In %s, message is too short, len: %d, dest len: %d\n",
-			__func__, len, hdlc.dest_idx);
-		mutex_unlock(&driver->diag_hdlc_mutex);
+		pr_err_ratelimited("diag: In %s, message is too short, len: %d,"
+			" dest len: %d\n", __func__, len, hdlc.dest_idx);
 		return;
 	}
 
