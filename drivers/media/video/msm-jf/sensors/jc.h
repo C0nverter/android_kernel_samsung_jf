@@ -126,11 +126,11 @@ u8 buf_port_seting2_m10mo[] = {
 #define JC_FW_VER_NUM		0x000018
 #define JC_FW_VER_STR	       0x001EF080
 
-#define JC_M9MO_FW_PATH		"/system/cameradata/RS_M9MO.bin"
-#define JC_M10MO_FW_PATH_SS		"/system/cameradata/RS_M10MO_SS.bin"
-#define JC_M10MO_FW_PATH_OS		"/system/cameradata/RS_M10MO_OS.bin"
-#define JC_M10MO_FW_PATH_SL		"/system/cameradata/RS_M10MO_SL.bin"
-#define JC_M10MO_FW_PATH_OL		"/system/cameradata/RS_M10MO_OL.bin"
+#define JC_M9MO_FW_PATH		"/vendor/cameradata/RS_M9MO.bin"
+#define JC_M10MO_FW_PATH_SS		"/vendor/cameradata/RS_M10MO_SS.bin"
+#define JC_M10MO_FW_PATH_OS		"/vendor/cameradata/RS_M10MO_OS.bin"
+#define JC_M10MO_FW_PATH_SL		"/vendor/cameradata/RS_M10MO_SL.bin"
+#define JC_M10MO_FW_PATH_OL		"/vendor/cameradata/RS_M10MO_OL.bin"
 
 #define JC_M9MO_FW_PATH_SD		"/mnt/shell/emulated/0/RS_M9MO.bin"
 #define JC_M10MO_FW_PATH_SD		"/mnt/shell/emulated/0/RS_M10MO.bin"
@@ -140,8 +140,8 @@ u8 buf_port_seting2_m10mo[] = {
 #define FW_INFO_PATH		"/mnt/shell/emulated/0/FW_INFO.bin"
 #define JC_FW_DUMP_PATH	"/data/M10MO_dump.bin"
 #define JC_FACTORY_CSV_PATH	"/data/FACTORY_CSV_RAW.bin"
-#define JC_SIO_LOADER_PATH_M9MO       "/system/cameradata/M9MO_SFW.bin"
-#define JC_SIO_LOADER_PATH_M10MO       "/system/cameradata/M10MO_SFW.bin"
+#define JC_SIO_LOADER_PATH_M9MO       "/vendor/cameradata/M9MO_SFW.bin"
+#define JC_SIO_LOADER_PATH_M10MO       "/vendor/cameradata/M10MO_SFW.bin"
 
 #define JC_FLASH_BASE_ADDR	0x00000000
 #define JC_FLASH_READ_BASE_ADDR	0x000000
